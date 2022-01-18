@@ -18,8 +18,7 @@ const generateDay = monthDay => {
                         </div>
                     `;
               })
-              .toString()
-              .replaceAll(',', '')}
+              .join('')}
         </div>
     `;
 };

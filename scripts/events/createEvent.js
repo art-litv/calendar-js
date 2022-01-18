@@ -52,17 +52,17 @@ async function validateNewEvent(newEvent) {
 }
 
 async function onCreateEvent(event) {
-  event.preventDefault();
-  const formData = new FormData(eventFormElem);
+  event && event.preventDefault();
+  const formData = Object.fromEntries(new FormData(eventFormElem));
 
   clearErrorText();
 
-  const date = formData.get('date') || new Date();
+  const date = formData.date || new Date();
   const newEvent = {
-    title: formData.get('title') || '(No title)',
-    description: formData.get('description'),
-    start: getDateTime(date, formData.get('startTime')),
-    end: getDateTime(date, formData.get('endTime')),
+    title: formData.title || '(No title)',
+    description: formData.description,
+    start: getDateTime(date, formData.startTime),
+    end: getDateTime(date, formData.endTime),
   };
 
   const foundErrors = await validateNewEvent(newEvent);

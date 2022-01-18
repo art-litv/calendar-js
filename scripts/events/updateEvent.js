@@ -26,10 +26,10 @@ function onCloseUpdateEventForm() {
 async function validateUpdatedEvent(formData, selectedEventId) {
   const validatedEvent = {
     id: selectedEventId,
-    title: formData.get('title') || '(No title)',
-    description: formData.get('description'),
-    start: getDateTime(formData.get('date'), formData.get('startTime')),
-    end: getDateTime(formData.get('date'), formData.get('endTime')),
+    title: formData.title || '(No title)',
+    description: formData.description,
+    start: getDateTime(formData.date, formData.startTime),
+    end: getDateTime(formData.date, formData.endTime),
   };
 
   const errors = await validateEvent(validatedEvent, [
@@ -42,8 +42,8 @@ async function validateUpdatedEvent(formData, selectedEventId) {
 }
 
 export async function onUpdateEvent(event) {
-  event.preventDefault();
-  const formData = new FormData(updateEventFormElem);
+  event && event.preventDefault();
+  const formData = Object.fromEntries(new FormData(updateEventFormElem));
 
   document.querySelectorAll('.error-text').forEach(errorTextElem => {
     errorTextElem.remove();
@@ -62,10 +62,10 @@ export async function onUpdateEvent(event) {
     return;
   }
 
-  eventToUpdate.title = formData.get('title');
-  eventToUpdate.description = formData.get('description');
-  eventToUpdate.start = getDateTime(formData.get('date'), formData.get('startTime'));
-  eventToUpdate.end = getDateTime(formData.get('date'), formData.get('endTime'));
+  eventToUpdate.title = formData.title;
+  eventToUpdate.description = formData.description;
+  eventToUpdate.start = getDateTime(formData.date, formData.startTime);
+  eventToUpdate.end = getDateTime(formData.date, formData.endTime);
 
   await updateEvent(eventToUpdate);
 

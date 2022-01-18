@@ -18,7 +18,7 @@ export const setItem = (key, value) => {
 
 export const getItem = key => {
   const value = JSON.parse(localStorage.getItem(key));
-  return Date.parse(value) ? new Date(value) : value;
+  return !Number.isInteger(value) && Date.parse(value) ? new Date(value) : value;
 };
 
 // пример объекта события

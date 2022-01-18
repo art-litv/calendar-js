@@ -11,6 +11,5 @@ export const renderTimescale = () => {
                 </div>
             `,
     )
-    .toString()
-    .replaceAll(',', '');
+    .join('');
 };
