@@ -1,0 +1,21 @@
+.event {
+  position: absolute;
+  width: $event-width;
+  border-radius: $event-border-radius;
+  background-color: $event-bg-color;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 2px 5px;
+  overflow: auto;
+  z-index: 1;
+
+  &__title {
+    font-size: 14px;
+  }
+
+  &__time {
+    font-size: 12px;
+  }
+}

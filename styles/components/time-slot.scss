@@ -1,0 +1,13 @@
+.time-slot {
+  width: $side-padding;
+  height: $row-height;
+  position: relative;
+
+  &__time {
+    opacity: 85%;
+    font-size: 14px;
+    position: absolute;
+    top: 85%;
+    left: 50%;
+  }
+}
